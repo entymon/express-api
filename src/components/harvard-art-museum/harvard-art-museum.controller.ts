@@ -32,7 +32,7 @@ export default class HarvardArtMuseum extends BaseApi {
         // descending, that have images and have been verified to the ‘Best’ standard.
         axios.get("https://api.harvardartmuseums.org/object", {
             params: {
-                apikey: "c28e4be0-4c0e-11ea-90d6-25d9a9fe80fc",
+                apikey: process.env.API_KEY,
                 page: req.params.page ?? 1,
                 clasiffication: 'Prints',
                 sort: 'rank',
@@ -62,7 +62,7 @@ export default class HarvardArtMuseum extends BaseApi {
     public getPrintById(req: Request, res: Response, next: NextFunction): void {
         axios.get(`https://api.harvardartmuseums.org/object/${req.params.objectId}`, {
             params: {
-                apikey: "c28e4be0-4c0e-11ea-90d6-25d9a9fe80fc"
+                apikey: process.env.API_KEY
             }
         })
         .then(function (response) {

@@ -13,7 +13,6 @@ describe('harvard art museum integration tests', () => {
         app = await IntegrationHelpers.getApp();
     });
 
-
     it('can get prints', async () => {
         await request(app)
             .get('/api/harvard-art-museum/prints/')
@@ -32,13 +31,5 @@ describe('harvard art museum integration tests', () => {
             .set('Accept', 'application/json')
             .expect('Content-Type', 'application/json; charset=utf-8')
             .expect(StatusCodes.OK);
-    });
-
-    it('should get the error', async () => {
-        await request(app)
-            .get('/api/status/error')
-            .set('Accept', 'application/json')
-            .expect('Content-Type', 'application/json; charset=utf-8')
-            .expect(StatusCodes.BAD_REQUEST);
     });
 });
