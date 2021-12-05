@@ -2,6 +2,7 @@ import { Application, NextFunction, Request, Response } from 'express';
 import BaseApi from '../BaseApi';
 import axios from 'axios';
 import * as responseHandler from '../../lib/response-handler';
+import { IHarvardArtMuseumApiResponse } from './harvard-art-museum.types';
 
 /**
  * Status controller
@@ -16,7 +17,7 @@ export default class HarvardArtMuseum extends BaseApi {
     public register(express: Application): void {
         express.use('/api/harvard-art-museum', this.router)
         this.router.get('/prints/:page?', this.getPrintsByPage)
-        this.router.get('/prints/:objectId', this.getPrintById)
+        this.router.get('/print/:objectId', this.getPrintById)
     }
 
     /**
@@ -42,8 +43,8 @@ export default class HarvardArtMuseum extends BaseApi {
             }
         })
         .then(function (response) {
-            console.log(response.data);
-            res.locals.data = response.data
+            const resources: IHarvardArtMuseumApiResponse = response.data
+            res.locals.data = resources;
             responseHandler.json(res)
         })
         .catch(function (error) {
@@ -65,9 +66,9 @@ export default class HarvardArtMuseum extends BaseApi {
             }
         })
         .then(function (response) {
-            console.log(response.data);
-            res.locals.data = response.data
-            responseHandler.json(res)
+            const resources: IHarvardArtMuseumApiResponse = response.data
+            res.locals.data = resources;
+            responseHandler.json(res);
         })
         .catch(function (error) {
             next(error);

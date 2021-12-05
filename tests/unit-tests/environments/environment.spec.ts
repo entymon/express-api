@@ -6,14 +6,14 @@ describe('Environment', () => {
     let instance: Environment;
 
     beforeEach(() => {
-        instance = new Environment('local');
+        instance = new Environment('test');
     });
 
     it('should get the current environment', async () => {
         expect(instance).toBeInstanceOf(Environment);
         const environment = instance.getCurrentEnvironment();
         expect(environment).toBeDefined();
-        expect(environment).toBe(Environments.LOCAL);
+        expect(environment).toBe(Environments.TEST);
     });
 
     it('should check if environement is production or not', async () => {
@@ -25,6 +25,6 @@ describe('Environment', () => {
         instance.setEnvironment('local');
         const environment = instance.getCurrentEnvironment();
         expect(environment).toBeDefined();
-        expect(environment).toBe(Environments.LOCAL);
+        expect(environment).toBe(Environments.TEST);
     });
 });
